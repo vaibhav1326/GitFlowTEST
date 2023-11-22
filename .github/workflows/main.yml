@@ -3,8 +3,7 @@ name: Workflow Copy Code
 on:
   push:
     branches:
-      - master
-      - dev
+      - main
 
 jobs:
   copy-code:
@@ -16,7 +15,9 @@ jobs:
 
     - name: Copy Code
       run: |
-        cp -r source_directory/* destination_directory/
+        mkdir hello
+        cd ..
+        cp -r /* /hello
 
     - name: Commit and Push Changes
       run: |
