@@ -1,0 +1,27 @@
+name: Workflow Copy Code
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  copy-code:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Copy Code
+      run: |
+        cp -r source_directory/* destination_directory/
+
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add destination_directory/
+        git commit -m "Copy code msg"
+        git push        
